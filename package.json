@@ -6,7 +6,8 @@
   "private": false,
   "scripts": {
     "lint": "eslint ./src/",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start": "node ./src/estimator.js"
   },
   "dependencies": {
     "@types/jest": "^25.2.1",

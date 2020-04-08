@@ -24,7 +24,7 @@ const getCurrentlyInfected = (reportedCases, impact) => {
 // This function compute infections by requested time
 const getInfectionsByRequestedTime = (data, impact) => {
   const currentlyInfected = getCurrentlyInfected(data.reportedCases, impact);
-  const timeToElapse = periodNormaliser('days', data.timeToElapse);
+  const timeToElapse = periodNormaliser(data.periodType, data.timeToElapse);
   const factor = Math.floor(timeToElapse / 3);
 
   return currentlyInfected * (2 ** factor);
