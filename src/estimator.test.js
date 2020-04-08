@@ -21,22 +21,43 @@ test('should return output object when called', () => {
   const output = {
     data: input,
     impact: {
-      currentlyInfected: input.reportedCases * 10,
-      infectionsByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)),
-      severeCasesByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
-      hospitalBedsByRequestedTime: (input.totalHospitalBeds * 0.35) - (input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
-      casesForICUByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
-      casesForVentilatorsByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
-      dollarsInFlight: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
+      currentlyInfected:
+      input.reportedCases * 10,
+      infectionsByRequestedTime:
+      input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)),
+      severeCasesByRequestedTime:
+      input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
+      hospitalBedsByRequestedTime:
+      (input.totalHospitalBeds * 0.35) - (input.reportedCases * 10
+        * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
+      casesForICUByRequestedTime:
+      input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
+      casesForVentilatorsByRequestedTime:
+      input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
+      dollarsInFlight:
+      input.reportedCases * 10 * (
+        2 ** Math.floor(input.timeToElapse / 3)
+      ) * input.region.avgDailyIncomePopulation
+      * input.region.avgDailyIncomeInUSD * input.timeToElapse
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
-      infectionsByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)),
-      severeCasesByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
-      hospitalBedsByRequestedTime: (input.totalHospitalBeds * 0.35) - (input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
-      casesForICUByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
-      casesForVentilatorsByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
-      dollarsInFlight: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
+      infectionsByRequestedTime:
+      input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)),
+      severeCasesByRequestedTime:
+      input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
+      hospitalBedsByRequestedTime:
+      (input.totalHospitalBeds * 0.35) - (
+        input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
+      casesForICUByRequestedTime:
+      input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
+      casesForVentilatorsByRequestedTime:
+      input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
+      dollarsInFlight:
+      input.reportedCases * 50 * (
+        2 ** Math.floor(input.timeToElapse / 3)
+      ) * input.region.avgDailyIncomePopulation
+      * input.region.avgDailyIncomeInUSD * input.timeToElapse
     }
   };
   // act
