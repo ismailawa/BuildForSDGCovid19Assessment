@@ -37,6 +37,15 @@ const getHospitalBedsByRequestedTime = (data, impact) => {
   return availibleBeds - severeCasesByRequestedTime;
 };
 
+// TODO: To implement later
+const getCasesForICUByRequestedTime = () => null;
+
+// TODO: To implement later
+const getCasesForVentilatorsByRequestedTime = () => null;
+
+// TODO: To implement later
+const getDollarsInFlight = () => null;
+
 const processData = (data) => (
   {
     data,
@@ -44,13 +53,19 @@ const processData = (data) => (
       currentlyInfected: getCurrentlyInfected(data.reportedCases, 'normal'),
       infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'normal'),
       severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'normal'),
-      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'normal')
+      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'normal'),
+      casesForICUByRequestedTime: getCasesForICUByRequestedTime(),
+      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(),
+      dollarsInFlight: getDollarsInFlight()
     },
     severeImpact: {
       currentlyInfected: getCurrentlyInfected(data.reportedCases, 'severe'),
       infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'severe'),
       severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'severe'),
-      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'severe')
+      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'severe'),
+      casesForICUByRequestedTime: getCasesForICUByRequestedTime(),
+      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(),
+      dollarsInFlight: getDollarsInFlight()
     }
   });
 

@@ -24,13 +24,19 @@ test('should return output object when called', () => {
       currentlyInfected: 674 * 10,
       infectionsByRequestedTime: 3533701120,
       severeCasesByRequestedTime: 3533701120 * (15 / 100),
-      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (3533701120 * (15 / 100))
+      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (3533701120 * (15 / 100)),
+      casesForICUByRequestedTime: null,
+      casesForVentilatorsByRequestedTime: null,
+      dollarsInFlight: null
     },
     severeImpact: {
       currentlyInfected: 674 * 50,
       infectionsByRequestedTime: 17668505600,
       severeCasesByRequestedTime: 17668505600 * (15 / 100),
-      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (17668505600 * (15 / 100))
+      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (17668505600 * (15 / 100)),
+      casesForICUByRequestedTime: null,
+      casesForVentilatorsByRequestedTime: null,
+      dollarsInFlight: null
     }
   };
   // act
