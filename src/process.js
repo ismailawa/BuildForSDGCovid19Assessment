@@ -1,10 +1,3 @@
-const getCurrentlyInfected = (reportedCases, impact) => {
-  if (impact === 'severe') {
-    return reportedCases * 50;
-  }
-  return reportedCases * 10;
-};
-
 // Convert the timeToElapse into days defending period type picked by the user
 const periodNormaliser = (periodType, timeToElapse) => {
   if (periodType === 'weeks') {
@@ -18,6 +11,17 @@ const periodNormaliser = (periodType, timeToElapse) => {
   return timeToElapse;
 };
 
+
+// This compute  number of infected base on reported cases.
+const getCurrentlyInfected = (reportedCases, impact) => {
+  if (impact === 'severe') {
+    return reportedCases * 50;
+  }
+  return reportedCases * 10;
+};
+
+
+// This function compute infections by requested time
 const getInfectionsByRequestedTime = (data, impact) => {
   const currentlyInfected = getCurrentlyInfected(data.reportedCases, impact);
   const timeToElapse = periodNormaliser('days', data.timeToElapse);
@@ -26,26 +30,35 @@ const getInfectionsByRequestedTime = (data, impact) => {
   return currentlyInfected * (2 ** factor);
 };
 
+
+// this function compute Severe cases by requested time
 const getsevereCasesByRequestedTime = (data, impact) => {
   const result = getInfectionsByRequestedTime(data, impact) * (15 / 100);
   return result;
 };
 
+
+// This function compute available beds
 const getHospitalBedsByRequestedTime = (data, impact) => {
   const severeCasesByRequestedTime = getsevereCasesByRequestedTime(data, impact);
-  const availibleBeds = data.totalHospitalBeds * (35 / 100);
-  return availibleBeds - severeCasesByRequestedTime;
+  const availableBeds = data.totalHospitalBeds * (35 / 100);
+  return availableBeds - severeCasesByRequestedTime;
 };
 
+
+// This function compute cases required ICU by requested time
 const getCasesForICUByRequestedTime = (data, impact) => (
   getInfectionsByRequestedTime(data, impact) * (5 / 100)
 );
 
+
+// This function compute cases that required ventilators
 const getCasesForVentilatorsByRequestedTime = (data, impact) => (
   getInfectionsByRequestedTime(data, impact) * (2 / 100)
 );
 
 
+// Estimate how much money the economy is likely to lose over the said period.
 const getDollarsInFlight = (data, impact) => {
   const InfectionsByRequestedTime = getInfectionsByRequestedTime(data, impact);
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
@@ -53,6 +66,7 @@ const getDollarsInFlight = (data, impact) => {
   return InfectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD * timeToElapse;
 };
 
+// This the main function that return the final output base on inputed data
 const processData = (data) => (
   {
     data,
