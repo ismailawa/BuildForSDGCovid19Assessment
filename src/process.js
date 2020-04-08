@@ -37,14 +37,21 @@ const getHospitalBedsByRequestedTime = (data, impact) => {
   return availibleBeds - severeCasesByRequestedTime;
 };
 
-// TODO: To implement later
-const getCasesForICUByRequestedTime = () => null;
+const getCasesForICUByRequestedTime = (data, impact) => (
+  getInfectionsByRequestedTime(data, impact) * (5 / 100)
+);
 
-// TODO: To implement later
-const getCasesForVentilatorsByRequestedTime = () => null;
+const getCasesForVentilatorsByRequestedTime = (data, impact) => (
+  getInfectionsByRequestedTime(data, impact) * (2 / 100)
+);
 
-// TODO: To implement later
-const getDollarsInFlight = () => null;
+
+const getDollarsInFlight = (data, impact) => {
+  const InfectionsByRequestedTime = getInfectionsByRequestedTime(data, impact);
+  const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
+  const timeToElapse = periodNormaliser(data.periodType, data.timeToElapse);
+  return InfectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD * timeToElapse;
+};
 
 const processData = (data) => (
   {
@@ -54,18 +61,18 @@ const processData = (data) => (
       infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'normal'),
       severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'normal'),
       hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'normal'),
-      casesForICUByRequestedTime: getCasesForICUByRequestedTime(),
-      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(),
-      dollarsInFlight: getDollarsInFlight()
+      casesForICUByRequestedTime: getCasesForICUByRequestedTime(data, 'normal'),
+      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(data, 'normal'),
+      dollarsInFlight: getDollarsInFlight(data, 'normal')
     },
     severeImpact: {
       currentlyInfected: getCurrentlyInfected(data.reportedCases, 'severe'),
       infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'severe'),
       severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'severe'),
       hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'severe'),
-      casesForICUByRequestedTime: getCasesForICUByRequestedTime(),
-      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(),
-      dollarsInFlight: getDollarsInFlight()
+      casesForICUByRequestedTime: getCasesForICUByRequestedTime(data, 'severe'),
+      casesForVentilatorsByRequestedTime: getCasesForVentilatorsByRequestedTime(data, 'severe'),
+      dollarsInFlight: getDollarsInFlight(data, 'severe')
     }
   });
 
