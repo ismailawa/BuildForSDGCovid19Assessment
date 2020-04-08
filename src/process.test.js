@@ -20,23 +20,23 @@ const input = {
 const output = {
   data: input,
   impact: {
-    currentlyInfected: 674 * 10,
-    infectionsByRequestedTime: 3533701120,
-    severeCasesByRequestedTime: 3533701120 * (15 / 100),
-    hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (3533701120 * (15 / 100)),
-    casesForICUByRequestedTime: null,
-    casesForVentilatorsByRequestedTime: null,
-    dollarsInFlight: null
+    currentlyInfected: input.reportedCases * 10,
+    infectionsByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)),
+    severeCasesByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
+    hospitalBedsByRequestedTime: (input.totalHospitalBeds * 0.35) - (input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
+    casesForICUByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
+    casesForVentilatorsByRequestedTime: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
+    dollarsInFlight: input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
 
   },
   severeImpact: {
-    currentlyInfected: 674 * 50,
-    infectionsByRequestedTime: 17668505600,
-    severeCasesByRequestedTime: 17668505600 * (15 / 100),
-    hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (17668505600 * (15 / 100)),
-    casesForICUByRequestedTime: null,
-    casesForVentilatorsByRequestedTime: null,
-    dollarsInFlight: null
+    currentlyInfected: input.reportedCases * 50,
+    infectionsByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)),
+    severeCasesByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15,
+    hospitalBedsByRequestedTime: (input.totalHospitalBeds * 0.35) - (input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15),
+    casesForICUByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
+    casesForVentilatorsByRequestedTime: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.02,
+    dollarsInFlight: input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
   }
 };
 
