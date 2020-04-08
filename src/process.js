@@ -26,19 +26,35 @@ const getInfectionsByRequestedTime = (data, impact) => {
   return currentlyInfected * (2 ** factor);
 };
 
+const getsevereCasesByRequestedTime = (data, impact) => {
+  const result = getInfectionsByRequestedTime(data, impact) * (15 / 100);
+  return result;
+};
+
+const getHospitalBedsByRequestedTime = (data, impact) => {
+  const severeCasesByRequestedTime = getsevereCasesByRequestedTime(data, impact);
+  const availibleBeds = data.totalHospitalBeds * (35 / 100);
+  return availibleBeds - severeCasesByRequestedTime;
+};
+
 const processData = (data) => (
   {
     data,
     impact: {
       currentlyInfected: getCurrentlyInfected(data.reportedCases, 'normal'),
-      infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'normal')
+      infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'normal'),
+      severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'normal'),
+      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'normal')
     },
     severeImpact: {
       currentlyInfected: getCurrentlyInfected(data.reportedCases, 'severe'),
-      infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'severe')
+      infectionsByRequestedTime: getInfectionsByRequestedTime(data, 'severe'),
+      severeCasesByRequestedTime: getsevereCasesByRequestedTime(data, 'severe'),
+      hospitalBedsByRequestedTime: getHospitalBedsByRequestedTime(data, 'severe')
     }
   });
 
+exports.GetSevereCasesByRequestedTime = getsevereCasesByRequestedTime;
 exports.GetInfectionsByRequestedTime = getInfectionsByRequestedTime;
 exports.PeriodNormaliser = periodNormaliser;
 exports.ProcessData = processData;

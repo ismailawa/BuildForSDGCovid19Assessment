@@ -22,11 +22,15 @@ test('should return output object when called', () => {
     data: input,
     impact: {
       currentlyInfected: 674 * 10,
-      infectionsByRequestedTime: 3533701120
+      infectionsByRequestedTime: 3533701120,
+      severeCasesByRequestedTime: 3533701120 * (15 / 100),
+      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (3533701120 * (15 / 100))
     },
     severeImpact: {
       currentlyInfected: 674 * 50,
-      infectionsByRequestedTime: 17668505600
+      infectionsByRequestedTime: 17668505600,
+      severeCasesByRequestedTime: 17668505600 * (15 / 100),
+      hospitalBedsByRequestedTime: (1380614 * (35 / 100)) - (17668505600 * (15 / 100))
     }
   };
   // act
