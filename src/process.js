@@ -37,7 +37,7 @@ const getsevereCasesByRequestedTime = (data, impact) => (
 );
 // This function compute available beds
 const getHospitalBedsByRequestedTime = (data, impact) => {
-  const severeCasesByRequestedTime = getsevereCasesByRequestedTime(data, impact);
+  const severeCasesByRequestedTime = Math.floor(getsevereCasesByRequestedTime(data, impact));
   const availableBeds = data.totalHospitalBeds * 0.35;
   return Math.floor(availableBeds - severeCasesByRequestedTime);
 };
