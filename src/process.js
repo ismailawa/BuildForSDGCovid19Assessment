@@ -25,7 +25,7 @@ const getCurrentlyInfected = (reportedCases, impact) => {
 const getInfectionsByRequestedTime = (data, impact) => {
   const currentlyInfected = getCurrentlyInfected(data.reportedCases, impact);
   const timeToElapse = periodNormaliser(data.periodType, data.timeToElapse);
-  const factor = Math.floor(timeToElapse / 3);
+  const factor = Math.trunc(timeToElapse / 3);
 
   return currentlyInfected * (2 ** factor);
 };
@@ -37,9 +37,9 @@ const getsevereCasesByRequestedTime = (data, impact) => (
 );
 // This function compute available beds
 const getHospitalBedsByRequestedTime = (data, impact) => {
-  const severeCasesByRequestedTime = Math.floor(getsevereCasesByRequestedTime(data, impact));
+  const severeCasesByRequestedTime = getsevereCasesByRequestedTime(data, impact);
   const availableBeds = data.totalHospitalBeds * 0.35;
-  return Math.floor(availableBeds - severeCasesByRequestedTime);
+  return Math.trunc(availableBeds - severeCasesByRequestedTime);
 };
 
 
@@ -51,7 +51,7 @@ const getCasesForICUByRequestedTime = (data, impact) => (
 
 // This function compute cases that required ventilators
 const getCasesForVentilatorsByRequestedTime = (data, impact) => (
-  Math.floor(getInfectionsByRequestedTime(data, impact) * (2 / 100))
+  Math.trunc(getInfectionsByRequestedTime(data, impact) * (2 / 100))
 );
 
 

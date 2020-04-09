@@ -1,9 +1,9 @@
 const express = require('express');
+const estimatorApi = require('./api/routes/estimator');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use('/api/v1/on-covid-19', estimatorApi);
 
-app.listen(3000);
+app.listen(3000, () => {
+});
