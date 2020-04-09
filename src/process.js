@@ -32,17 +32,14 @@ const getInfectionsByRequestedTime = (data, impact) => {
 
 
 // this function compute Severe cases by requested time
-const getsevereCasesByRequestedTime = (data, impact) => {
-  const result = getInfectionsByRequestedTime(data, impact) * (15 / 100);
-  return result;
-};
-
-
+const getsevereCasesByRequestedTime = (data, impact) => (
+  getInfectionsByRequestedTime(data, impact) * 0.15
+);
 // This function compute available beds
 const getHospitalBedsByRequestedTime = (data, impact) => {
   const severeCasesByRequestedTime = getsevereCasesByRequestedTime(data, impact);
-  const availableBeds = data.totalHospitalBeds * (35 / 100);
-  return Math.floor(availableBeds - severeCasesByRequestedTime) - 1;
+  const availableBeds = data.totalHospitalBeds * 0.35;
+  return Math.floor(availableBeds - severeCasesByRequestedTime);
 };
 
 

@@ -31,7 +31,7 @@ test('should return output object when called', () => {
       - Math.floor(
         (input.reportedCases * 10
           * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15)
-      ) - 1,
+      ),
       casesForICUByRequestedTime:
       input.reportedCases * 10 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
       casesForVentilatorsByRequestedTime: Math.floor(
@@ -52,7 +52,7 @@ test('should return output object when called', () => {
       hospitalBedsByRequestedTime: Math.floor((input.totalHospitalBeds * 0.35))
       - Math.floor(
         (input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15)
-      ) - 1,
+      ),
       casesForICUByRequestedTime:
       input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.05,
       casesForVentilatorsByRequestedTime: Math.floor(
