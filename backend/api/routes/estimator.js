@@ -1,12 +1,12 @@
 const express = require('express');
+const { Controller } = require('../controllers/estimator');
 
 const router = express.Router();
 
-// @ts-ignore
-router.post('/', (req, res) => {
-  res.json({
-    name: 'ismailawa'
-  });
-});
+router.post('/', Controller.estimatorWithOutParams);
 
-module.exports = router;
+router.post('/:format', Controller.estimatorWithParams);
+
+router.get('/log', Controller.estimatorLog);
+
+exports.routes = router;

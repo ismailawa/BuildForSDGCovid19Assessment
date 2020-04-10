@@ -33,19 +33,21 @@ const output = {
     casesForVentilatorsByRequestedTime: Math.trunc(
       input.reportedCases * 10 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
-    dollarsInFlight: input.reportedCases
+    dollarsInFlight: Math.trunc(
+      input.reportedCases
     * 10 * (2 ** Math.trunc(input.timeToElapse / 3))
-    * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
-
+    * input.region.avgDailyIncomePopulation
+    * input.region.avgDailyIncomeInUSD * input.timeToElapse
+    )
   },
   severeImpact: {
     currentlyInfected: input.reportedCases * 50,
     infectionsByRequestedTime: input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3)),
     severeCasesByRequestedTime: input.reportedCases
     * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.15,
-    hospitalBedsByRequestedTime: Math.floor(
+    hospitalBedsByRequestedTime: Math.trunc(
       (input.totalHospitalBeds * 0.35)
-    - input.reportedCases * 50 * (2 ** Math.floor(input.timeToElapse / 3)) * 0.15
+    - input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.15
     ),
     casesForICUByRequestedTime: input.reportedCases * 50
     * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.05,
@@ -53,8 +55,11 @@ const output = {
       input.reportedCases
     * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
-    dollarsInFlight: input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
-    * input.region.avgDailyIncomePopulation * input.region.avgDailyIncomeInUSD * input.timeToElapse
+    dollarsInFlight: Math.trunc(
+      input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
+      * input.region.avgDailyIncomePopulation
+      * input.region.avgDailyIncomeInUSD * input.timeToElapse
+    )
   }
 };
 
