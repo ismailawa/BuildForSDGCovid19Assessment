@@ -10,6 +10,7 @@ const estimatorWithParams = (req, res) => {
   }
 
   if (format.toLowerCase() === 'xml') {
+    res.setHeader('content-type', 'application/xml');
     return res.send(jsonToxml(data));
   }
 
