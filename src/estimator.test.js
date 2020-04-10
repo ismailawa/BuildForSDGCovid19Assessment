@@ -38,10 +38,10 @@ test('should return output object when called', () => {
         input.reportedCases * 10 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
       ),
       dollarsInFlight:
-      parseFloat(((input.reportedCases * 10 * (
+      Math.trunc((input.reportedCases * 10 * (
         2 ** Math.trunc(input.timeToElapse / 3)
       ) * input.region.avgDailyIncomePopulation
-      * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2))
+      * input.region.avgDailyIncomeInUSD) / input.timeToElapse)
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
@@ -59,10 +59,10 @@ test('should return output object when called', () => {
         input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
       ),
       dollarsInFlight:
-      parseFloat(((input.reportedCases * 50 * (
+      Math.trunc((input.reportedCases * 50 * (
         2 ** Math.trunc(input.timeToElapse / 3)
       ) * input.region.avgDailyIncomePopulation
-      * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2))
+      * input.region.avgDailyIncomeInUSD) / input.timeToElapse)
     }
   };
   // act

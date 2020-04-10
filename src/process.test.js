@@ -34,10 +34,10 @@ const output = {
       input.reportedCases * 10 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
     dollarsInFlight:
-      parseFloat(((input.reportedCases
+      Math.trunc((input.reportedCases
     * 10 * (2 ** Math.trunc(input.timeToElapse / 3))
     * input.region.avgDailyIncomePopulation
-    * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2))
+    * input.region.avgDailyIncomeInUSD) / input.timeToElapse)
   },
   severeImpact: {
     currentlyInfected: input.reportedCases * 50,
@@ -55,9 +55,9 @@ const output = {
     * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
     dollarsInFlight:
-      parseFloat(((input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
+      Math.trunc((input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
       * input.region.avgDailyIncomePopulation
-      * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2))
+      * input.region.avgDailyIncomeInUSD) / input.timeToElapse)
   }
 };
 

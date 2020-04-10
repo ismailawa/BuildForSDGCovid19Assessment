@@ -60,10 +60,8 @@ const getDollarsInFlight = (data, impact) => {
   const InfectionsByRequestedTime = getInfectionsByRequestedTime(data, impact);
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
   const timeToElapse = periodNormaliser(data.periodType, data.timeToElapse);
-  return parseFloat(
-    (
-      (InfectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD) / timeToElapse
-    ).toFixed(2)
+  return Math.trunc(
+    (InfectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD) / timeToElapse
   );
 };
 
