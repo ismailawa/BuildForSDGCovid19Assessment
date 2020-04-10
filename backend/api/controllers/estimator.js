@@ -13,7 +13,7 @@ const estimatorWithParams = (req, res) => {
     return res.send(jsonToxml(data));
   }
 
-  return res.status(404).json({ response: 'bad request' });
+  return res.status(404).json({ response: 'Please use /json or /xml' });
 };
 
 const estimatorWithOutParams = (req, res) => {

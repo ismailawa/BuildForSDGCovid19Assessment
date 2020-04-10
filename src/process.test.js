@@ -33,12 +33,11 @@ const output = {
     casesForVentilatorsByRequestedTime: Math.trunc(
       input.reportedCases * 10 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
-    dollarsInFlight: Math.trunc(
-      input.reportedCases
+    dollarsInFlight:
+      ((input.reportedCases
     * 10 * (2 ** Math.trunc(input.timeToElapse / 3))
     * input.region.avgDailyIncomePopulation
-    * input.region.avgDailyIncomeInUSD * input.timeToElapse
-    )
+    * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2)
   },
   severeImpact: {
     currentlyInfected: input.reportedCases * 50,
@@ -55,11 +54,10 @@ const output = {
       input.reportedCases
     * 50 * (2 ** Math.trunc(input.timeToElapse / 3)) * 0.02
     ),
-    dollarsInFlight: Math.trunc(
-      input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
+    dollarsInFlight:
+      ((input.reportedCases * 50 * (2 ** Math.trunc(input.timeToElapse / 3))
       * input.region.avgDailyIncomePopulation
-      * input.region.avgDailyIncomeInUSD * input.timeToElapse
-    )
+      * input.region.avgDailyIncomeInUSD) / input.timeToElapse).toFixed(2)
   }
 };
 
