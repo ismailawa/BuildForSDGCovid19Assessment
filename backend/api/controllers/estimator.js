@@ -29,8 +29,8 @@ const estimatorLog = (req, res) => {
     if (error) {
       return res.send({ error });
     }
-    res.setHeader('Content-Type', 'text/plain');
-    return res.send(data);
+    res.setHeader('Content-Type', 'text/html');
+    return res.send(data.toString());
   });
 };
 
