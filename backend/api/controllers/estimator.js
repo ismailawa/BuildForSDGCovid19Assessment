@@ -25,13 +25,13 @@ const estimatorWithOutParams = (req, res) => {
 };
 
 const estimatorLog = (req, res) => {
-  fs.readFile('apilog.txt', (error, data) => {
-    if (error) {
-      return res.send({ error });
-    }
+  try {
+    const data = fs.readFileSync('apilog.txt');
     res.setHeader('Content-Type', 'text/html');
-    return res.send(data.toString());
-  });
+    return res.send(data.toString().trim());
+  } catch (error) {
+    return res.send({ error });
+  }
 };
 
 exports.Controller = { estimatorWithParams, estimatorWithOutParams, estimatorLog };
