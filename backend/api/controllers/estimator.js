@@ -1,3 +1,4 @@
+const fs = require('fs');
 const jsonToxml = require('jsontoxml');
 const { ProcessData } = require('../../../src/process');
 
@@ -24,7 +25,13 @@ const estimatorWithOutParams = (req, res) => {
 };
 
 const estimatorLog = (req, res) => {
-  res.json({ status: 'End point is working' });
+  fs.readFile('apilog.txt', (error, data) => {
+    if (error) {
+      return res.send({ error });
+    }
+    res.setHeader('Content-Type', 'text/plain');
+    return res.send(data);
+  });
 };
 
 exports.Controller = { estimatorWithParams, estimatorWithOutParams, estimatorLog };

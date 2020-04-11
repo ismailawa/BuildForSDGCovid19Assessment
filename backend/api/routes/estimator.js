@@ -7,6 +7,6 @@ router.post('/', Controller.estimatorWithOutParams);
 
 router.post('/:format', Controller.estimatorWithParams);
 
-router.get('/log', Controller.estimatorLog);
+router.get('/logs', Controller.estimatorLog);
 
 exports.routes = router;
