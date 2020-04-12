@@ -1,13 +1,21 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
+const engine = require('ejs-layout');
 const responseTime = require('response-time');
 const { routes } = require('./api/routes/estimator');
 
 const app = express();
 const port = process.env.PORT || '3000';
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+// eslint-disable-next-line no-underscore-dangle
+app.engine('ejs', engine.__express);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(responseTime((req, res, time) => {
   res.on('finish', () => {
     const stat = (`${req.method}\t\t/api/v1/on-covid-19${req.url}\t\t${res.statusCode}\t\t${time.toFixed(2)}ms\n`);
@@ -17,7 +25,9 @@ app.use(responseTime((req, res, time) => {
 
 app.use('/api/v1/on-covid-19', routes);
 
-app.get('/', (req, res) => (res.send({ home: 'This is the home page..' })));
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 app.listen(port, () => {
 });
