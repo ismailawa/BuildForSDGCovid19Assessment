@@ -25,6 +25,7 @@ const options = {
 const getEstimate = async (option) => {
   const response = await fetch('/api/v1/on-covid-19/json', option);
   const data = await response.json();
+  // eslint-disable-next-line no-console
   console.log(data);
   $('#estimateDisplayModal').modal();
 };
