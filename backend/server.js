@@ -16,8 +16,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(responseTime((req, res, time) => {
   res.on('finish', () => {
-    const stat = (`${req.method}\t\t/api/v1/on-covid-19${req.url}\t\t${res.statusCode}\t\t${time.toFixed(2)}ms\n`);
-    if (req.url !== '/logs') fs.appendFile('apilog.txt', stat, (error) => res.end({ error }));
+    const stat = 
+    (`${req.method}\t\t/api/v1/on-covid-19${req.url}\t\t${res.statusCode}\t\t${Math.floor(time)}ms\n`);
+    fs.appendFile('apilog.txt', stat, (error) => res.end({ error }));
   });
 }));
 

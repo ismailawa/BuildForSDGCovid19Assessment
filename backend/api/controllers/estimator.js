@@ -7,6 +7,7 @@ const estimatorWithParams = (req, res) => {
   const { body } = req;
   const data = ProcessData(body);
   if (format.toLowerCase() === 'json') {
+    console.log(req.body);
     return res.json(data);
   }
 

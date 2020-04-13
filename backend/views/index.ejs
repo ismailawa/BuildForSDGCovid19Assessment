@@ -10,40 +10,58 @@
     </head>
     <body>
         <section class="container-fluid bg">
-             
             <section class="row">
                 <section class="col-12 col-sm-3 col-md-6">
-                    <form class="form-container">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Region">
+                    <div class="modal fade" id="estimateDisplayModal" tabindex="-1" role="dialog" aria-labelledby="estimateDisplayModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="estimateDisplayModalTitle">Estimation for time elapse</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                    <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </form>
+                    </div>
                 </section>
+            </section>
+            <section class="row content-justify-center">
                 <section class="col-12 col-sm-3 col-md-6">
-                    <h2>HHHHHHHHHHHHHHHHHHHHHH</h2>
-                </section>
+                    <form class="form-container">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" id="data-population" aria-describedby="data-population" placeholder="population">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="data-time-to-elaps" placeholder="Time To Elapse">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" id="data-reported-cases" placeholder="Reported Cases">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" id="data-total-hospital-beds" placeholder="Total Hospital Beds">
+                        </div>
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Period type</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            <option value="days">Days</option>
+                            <option value="weeks">Weeks</option>
+                            <option value="month">Months</option>
+                        </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="submit">Estomate</button>
+                    </form>
+                </section>           
             </section>
         </section>
         
