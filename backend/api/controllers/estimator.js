@@ -28,7 +28,7 @@ const estimatorWithOutParams = (req, res) => {
 const estimatorLog = (req, res) => {
   try {
     const data = fs.readFileSync('apilog.txt');
-    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Type', 'text/plain');
     return res.send(data.toString().trim());
   } catch (error) {
     return res.send({ error });
