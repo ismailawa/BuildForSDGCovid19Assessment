@@ -1,17 +1,15 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const engine = require('ejs-layout');
 const responseTime = require('response-time');
 const { routes } = require('./api/routes/estimator');
 
 const app = express();
 const port = process.env.PORT || '3000';
 
-app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
-// eslint-disable-next-line no-underscore-dangle
-app.engine('ejs', engine.__express);
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
