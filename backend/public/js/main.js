@@ -30,4 +30,8 @@ const getEstimate = async (option) => {
   $('#estimateDisplayModal').modal();
 };
 
-getEstimate(options);
+// @ts-ignore
+document.getElementById('data-go-estimate').addEventListener('click', (event) => {
+  event.preventDefault();
+  getEstimate(options);
+});
