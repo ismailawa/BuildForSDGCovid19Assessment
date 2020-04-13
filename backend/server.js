@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(responseTime((req, res, time) => {
   res.on('finish', () => {
-    const appTime = Math.trunc(time) < 10 && Math.trunc(time) > 0 ? `0${Math.trunc(time)}` : Math.trunc(time);
+    const appTime = Math.ceil(time) < 10 && Math.ceil(time) > 0 ? `0${Math.ceil(time)}` : Math.ceil(time);
     const stat = (`${req.method}\t\t/api/v1/on-covid-19${req.url}\t\t${res.statusCode}\t\t${appTime}ms\n`);
     fs.appendFile('apilog.txt', stat, (error) => res.end({ error }));
   });
